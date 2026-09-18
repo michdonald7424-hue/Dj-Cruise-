@@ -1,0 +1,1380 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Cruise - Premier Music & Entertainment Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        },
+                        cruise: {
+                            bg: '#0B0F17',
+                            card: '#151C2C',
+                            border: '#232D42',
+                            accent: '#FF0055',
+                            cyan: '#00F0FF',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0F17;
+            color: #F3F4F6;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232D42;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ca8a04;
+        }
+        /* Visual Equalizer Animation */
+        .eq-bar {
+            animation: bounce 1.2s infinite ease-in-out alternate;
+        }
+        .eq-1 { animation-delay: 0.1s; }
+        .eq-2 { animation-delay: 0.3s; }
+        .eq-3 { animation-delay: 0.2s; }
+        .eq-4 { animation-delay: 0.4s; }
+        @keyframes bounce {
+            0% { height: 4px; }
+            100% { height: 18px; }
+        }
+        .glow-gold {
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.25);
+        }
+        .glow-accent {
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-cruise-bg text-gray-100 min-h-screen flex flex-col justify-between pb-28 md:pb-24">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-cruise-bg/90 backdrop-blur-md border-b border-cruise-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-gold-500 via-amber-500 to-cruise-accent flex items-center justify-center text-black font-extrabold text-xl shadow-lg shadow-gold-500/20">
+                        <i class="fa-solid font-black fa-compact-disc animate-spin-slow"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-wider text-white">DJ<span class="text-gold-500">CRUISE</span></span>
+                        <span class="block text-[10px] uppercase tracking-widest text-gray-400 font-semibold -mt-1">Entertainment</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    <button onclick="switchTab('home')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:text-gold-500 transition-colors text-gold-500" data-tab="home">Home</button>
+                    <button onclick="switchTab('music')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:text-gold-500 transition-colors text-gray-300" data-tab="music">Music</button>
+                    <button onclick="switchTab('mixes')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:text-gold-500 transition-colors text-gray-300" data-tab="mixes">DJ Mixes</button>
+                    <button onclick="switchTab('artists')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:text-gold-500 transition-colors text-gray-300" data-tab="artists">Artists</button>
+                    <button onclick="switchTab('events')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:text-gold-500 transition-colors text-gray-300" data-tab="events">Events</button>
+                    <button onclick="switchTab('cinema')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:text-gold-500 transition-colors text-gray-300" data-tab="cinema">Cinema</button>
+                    <button onclick="switchTab('news')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:text-gold-500 transition-colors text-gray-300" data-tab="news">News</button>
+                    <button onclick="switchTab('careers')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium hover:text-gold-500 transition-colors text-gray-300" data-tab="careers">Careers</button>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleSearchModal()" class="p-2.5 rounded-xl bg-cruise-card hover:bg-cruise-border text-gray-300 hover:text-gold-500 transition-all border border-cruise-border" title="Global Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button onclick="switchTab('admin')" class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-gold-500 to-amber-600 hover:from-gold-600 hover:to-amber-700 text-black font-semibold text-sm transition-all shadow-md shadow-gold-500/10">
+                        <i class="fa-solid fa-gauge"></i>
+                        <span>Admin Hub</span>
+                    </button>
+                    <!-- Mobile Hamburger Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-cruise-card border border-cruise-border text-gray-300">
+                        <i class="fa-solid fa-bars text-lg" id="mobile-menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-cruise-border bg-cruise-card px-4 py-4 space-y-2">
+            <button onclick="switchTab('home')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-gold-500 bg-cruise-bg/50">Home</button>
+            <button onclick="switchTab('music')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-gray-300 hover:bg-cruise-bg/50">Music</button>
+            <button onclick="switchTab('mixes')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-gray-300 hover:bg-cruise-bg/50">DJ Mixes</button>
+            <button onclick="switchTab('artists')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-gray-300 hover:bg-cruise-bg/50">Artists</button>
+            <button onclick="switchTab('events')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-gray-300 hover:bg-cruise-bg/50">Events</button>
+            <button onclick="switchTab('cinema')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-gray-300 hover:bg-cruise-bg/50">Cinema</button>
+            <button onclick="switchTab('news')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-gray-300 hover:bg-cruise-bg/50">News</button>
+            <button onclick="switchTab('careers')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-gray-300 hover:bg-cruise-bg/50">Careers</button>
+            <button onclick="switchTab('admin')" class="mobile-nav-link block w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-gold-500 bg-gold-500/10 border border-gold-500/20">Admin Hub</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- ================= HOME TAB ================= -->
+        <section id="tab-home" class="tab-content space-y-12">
+            <!-- Hero Banner -->
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-cruise-card via-cruise-bg to-cruise-card border border-cruise-border p-8 md:p-12 lg:p-16 flex flex-col justify-center min-h-[440px]">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+                <div class="relative z-10 max-w-2xl space-y-6">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-gold-500/20 text-gold-400 border border-gold-500/30">
+                        <i class="fa-solid fa-fire"></i> Live Global Tour 2026
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+                        ELEVATE YOUR <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-amber-500 to-cruise-accent">SOUND & VIBE</span>
+                    </h1>
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+                        Welcome to DJ Cruise Entertainment. Experience high-octane DJ mixes, exclusive track releases, upcoming concert tours, and original nightlife culture content.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <button onclick="switchTab('music')" class="px-6 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-black font-bold text-sm transition-all shadow-lg shadow-gold-500/25 flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i> Listen Now
+                        </button>
+                        <button onclick="switchTab('events')" class="px-6 py-3.5 rounded-xl bg-cruise-card hover:bg-cruise-border text-white font-semibold text-sm transition-all border border-cruise-border flex items-center gap-2">
+                            <i class="fa-solid fa-ticket text-gold-500"></i> Get Tour Tickets
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Track Highlight -->
+            <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">Featured Tracks</h2>
+                        <p class="text-sm text-gray-400">Handpicked releases straight from the deck</p>
+                    </div>
+                    <button onclick="switchTab('music')" class="text-sm font-semibold text-gold-500 hover:text-gold-400 flex items-center gap-1">
+                        View All <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+                <div id="home-featured-tracks" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+
+            <!-- Upcoming Major Event Highlight -->
+            <div id="home-event-banner" class="rounded-2xl bg-cruise-card border border-cruise-border p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 glow-gold">
+                <!-- Dynamic content populated via JavaScript -->
+            </div>
+
+            <!-- Latest News Highlights -->
+            <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">Latest Headlines</h2>
+                        <p class="text-sm text-gray-400">Updates from the DJ Cruise universe</p>
+                    </div>
+                    <button onclick="switchTab('news')" class="text-sm font-semibold text-gold-500 hover:text-gold-400 flex items-center gap-1">
+                        Read All <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+                <div id="home-news-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MUSIC TAB ================= -->
+        <section id="tab-music" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-cruise-border pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-white">Music Vault</h1>
+                    <p class="text-gray-400 text-sm mt-1">Explore single releases, studio albums, and exclusive drops.</p>
+                </div>
+                <!-- Genre Filter -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0" id="music-genre-filters">
+                    <button onclick="filterMusic('All')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold-500 text-black border border-gold-500 whitespace-nowrap">All</button>
+                    <button onclick="filterMusic('Afrobeats')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border whitespace-nowrap">Afrobeats</button>
+                    <button onclick="filterMusic('House')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border whitespace-nowrap">House</button>
+                    <button onclick="filterMusic('Amapiano')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border whitespace-nowrap">Amapiano</button>
+                    <button onclick="filterMusic('Hip-Hop')" class="genre-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border whitespace-nowrap">Hip-Hop</button>
+                </div>
+            </div>
+
+            <!-- Music Grid -->
+            <div id="music-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Dynamic Content -->
+            </div>
+        </section>
+
+        <!-- ================= DJ MIXES TAB ================= -->
+        <section id="tab-mixes" class="tab-content hidden space-y-8">
+            <div class="border-b border-cruise-border pb-6">
+                <h1 class="text-3xl font-extrabold text-white">Non-Stop DJ Mixes</h1>
+                <p class="text-gray-400 text-sm mt-1">Live festival recordings, mixtape series, and club sets.</p>
+            </div>
+
+            <div id="mixes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic Content -->
+            </div>
+        </section>
+
+        <!-- ================= ARTISTS TAB ================= -->
+        <section id="tab-artists" class="tab-content hidden space-y-8">
+            <div class="border-b border-cruise-border pb-6">
+                <h1 class="text-3xl font-extrabold text-white">Artist Roster</h1>
+                <p class="text-gray-400 text-sm mt-1">Discover resident DJs, featured producers, and label talents.</p>
+            </div>
+
+            <div id="artists-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Dynamic Content -->
+            </div>
+        </section>
+
+        <!-- ================= EVENTS TAB ================= -->
+        <section id="tab-events" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-cruise-border pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-white">Live Events & Concerts</h1>
+                    <p class="text-gray-400 text-sm mt-1">Catch DJ Cruise performing live near you.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="filterEvents('upcoming')" class="event-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold-500 text-black">Upcoming</button>
+                    <button onclick="filterEvents('past')" class="event-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border">Past Shows</button>
+                </div>
+            </div>
+
+            <div id="events-list" class="space-y-4">
+                <!-- Dynamic Content -->
+            </div>
+        </section>
+
+        <!-- ================= CINEMA / VIDEOS TAB ================= -->
+        <section id="tab-cinema" class="tab-content hidden space-y-8">
+            <div class="border-b border-cruise-border pb-6">
+                <h1 class="text-3xl font-extrabold text-white">Cruise Cinema & Videos</h1>
+                <p class="text-gray-400 text-sm mt-1">Official music videos, behind-the-scenes vlogs, and tour recaps.</p>
+            </div>
+
+            <div id="videos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic Content -->
+            </div>
+        </section>
+
+        <!-- ================= NEWS TAB ================= -->
+        <section id="tab-news" class="tab-content hidden space-y-8">
+            <div class="border-b border-cruise-border pb-6">
+                <h1 class="text-3xl font-extrabold text-white">Latest News & Press</h1>
+                <p class="text-gray-400 text-sm mt-1">Official announcements, press releases, and music reviews.</p>
+            </div>
+
+            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Dynamic Content -->
+            </div>
+        </section>
+
+        <!-- ================= CAREERS TAB ================= -->
+        <section id="tab-careers" class="tab-content hidden space-y-8">
+            <div class="border-b border-cruise-border pb-6">
+                <h1 class="text-3xl font-extrabold text-white">Join the Cruise Team</h1>
+                <p class="text-gray-400 text-sm mt-1">Build your career in music production, event management, and entertainment technology.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-4" id="careers-list">
+                    <!-- Dynamic Content -->
+                </div>
+                <div class="bg-cruise-card border border-cruise-border rounded-2xl p-6 space-y-4 h-fit">
+                    <h3 class="text-xl font-bold text-white">Why Join Us?</h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-gold-500 mt-1"></i>
+                            <span>Access to global tours and VIP entertainment events.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-gold-500 mt-1"></i>
+                            <span>State-of-the-art studio facilities and equipment.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-gold-500 mt-1"></i>
+                            <span>Competitive compensation and creative freedom.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ADMIN HUB TAB ================= -->
+        <section id="tab-admin" class="tab-content hidden space-y-8">
+            <div class="border-b border-cruise-border pb-6 flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-white">Admin Management Hub</h1>
+                    <p class="text-gray-400 text-sm mt-1">Manage music releases, schedule tour events, publish news, and manage database schema.</p>
+                </div>
+            </div>
+
+            <!-- Admin Tabs Navigation -->
+            <div class="flex items-center gap-2 border-b border-cruise-border pb-3">
+                <button onclick="switchAdminTab('add-track')" class="admin-nav-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold-500 text-black" data-admin-tab="add-track">Add Track</button>
+                <button onclick="switchAdminTab('add-event')" class="admin-nav-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border" data-admin-tab="add-event">Add Event</button>
+                <button onclick="switchAdminTab('add-news')" class="admin-nav-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border" data-admin-tab="add-news">Publish News</button>
+                <button onclick="switchAdminTab('db-schema')" class="admin-nav-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border" data-admin-tab="db-schema">Supabase Schema</button>
+            </div>
+
+            <!-- Admin Forms -->
+            <div id="admin-form-container" class="bg-cruise-card border border-cruise-border rounded-2xl p-6 sm:p-8">
+                <!-- Add Track Form -->
+                <form id="admin-track-form" onsubmit="handleCreateTrack(event)" class="space-y-4">
+                    <h2 class="text-xl font-bold text-white">Add New Music Track</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Track Title</label>
+                            <input type="text" id="track-title" required class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Artist Name</label>
+                            <input type="text" id="track-artist" required class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Genre</label>
+                            <select id="track-genre" class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                                <option value="Afrobeats">Afrobeats</option>
+                                <option value="House">House</option>
+                                <option value="Amapiano">Amapiano</option>
+                                <option value="Hip-Hop">Hip-Hop</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Duration (e.g. 3:45)</label>
+                            <input type="text" id="track-duration" required placeholder="03:45" class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Cover Image URL</label>
+                            <input type="url" id="track-cover" required placeholder="https://images.unsplash.com/..." class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Audio Stream URL (.mp3)</label>
+                            <input type="url" id="track-audio" required placeholder="https://cdn.sound.com/song.mp3" class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                    </div>
+                    <button type="submit" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-black font-bold text-sm transition-all shadow-md shadow-gold-500/20">
+                        <i class="fa-solid fa-plus"></i> Save Track
+                    </button>
+                </form>
+
+                <!-- Add Event Form -->
+                <form id="admin-event-form" onsubmit="handleCreateEvent(event)" class="space-y-4 hidden">
+                    <h2 class="text-xl font-bold text-white">Schedule New Tour Event</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Event Name</label>
+                            <input type="text" id="event-title" required class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Venue & Location</label>
+                            <input type="text" id="event-location" required placeholder="Madison Square Garden, NYC" class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Date</label>
+                            <input type="date" id="event-date" required class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Time</label>
+                            <input type="text" id="event-time" required placeholder="09:00 PM" class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Ticket Price ($)</label>
+                            <input type="number" id="event-price" required placeholder="49.99" class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Banner Image URL</label>
+                            <input type="url" id="event-cover" required placeholder="https://images.unsplash.com/..." class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                    </div>
+                    <button type="submit" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-black font-bold text-sm transition-all">
+                        <i class="fa-solid fa-calendar-plus"></i> Publish Event
+                    </button>
+                </form>
+
+                <!-- Publish News Form -->
+                <form id="admin-news-form" onsubmit="handleCreateNews(event)" class="space-y-4 hidden">
+                    <h2 class="text-xl font-bold text-white">Publish Article or Press Release</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Article Headline</label>
+                            <input type="text" id="news-title" required class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Category</label>
+                            <input type="text" id="news-category" required placeholder="Tours / Music Release / Press" class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Header Image URL</label>
+                            <input type="url" id="news-image" required placeholder="https://images.unsplash.com/..." class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Full Article Content</label>
+                            <textarea id="news-content" rows="4" required class="w-full bg-cruise-bg border border-cruise-border rounded-xl p-4 text-white text-sm focus:border-gold-500 focus:outline-none"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-black font-bold text-sm transition-all">
+                        <i class="fa-solid fa-newspaper"></i> Publish News
+                    </button>
+                </form>
+
+                <!-- Supabase SQL Database Generator -->
+                <div id="admin-schema-view" class="space-y-4 hidden">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-bold text-white">Supabase SQL Schema & Setup</h2>
+                        <button onclick="copySqlSchema()" class="px-4 py-2 rounded-xl bg-cruise-border hover:bg-gold-500 hover:text-black text-white text-xs font-bold transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-copy"></i> Copy SQL
+                        </button>
+                    </div>
+                    <p class="text-sm text-gray-400">Run this SQL script in your Supabase SQL Editor to instantly provision PostgreSQL tables and RLS safety policies for DJ Cruise.</p>
+                    <pre class="bg-cruise-bg border border-cruise-border rounded-xl p-4 text-xs font-mono text-gold-400 overflow-x-auto max-h-96 leading-relaxed" id="sql-schema-code">
+-- 1. Create Tracks Table
+CREATE TABLE public.tracks (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT NOT NULL,
+    artist TEXT NOT NULL,
+    genre TEXT NOT NULL,
+    duration TEXT NOT NULL,
+    cover_url TEXT NOT NULL,
+    audio_url TEXT NOT NULL,
+    plays_count BIGINT DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- 2. Create Events Table
+CREATE TABLE public.events (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT NOT NULL,
+    venue TEXT NOT NULL,
+    event_date TIMESTAMP WITH TIME ZONE NOT NULL,
+    price NUMERIC(10, 2) NOT NULL,
+    cover_url TEXT NOT NULL,
+    ticket_status TEXT DEFAULT 'available',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- 3. Create News Table
+CREATE TABLE public.news (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT NOT NULL,
+    category TEXT NOT NULL,
+    content TEXT NOT NULL,
+    image_url TEXT NOT NULL,
+    published_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE public.tracks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.events ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.news ENABLE ROW LEVEL SECURITY;
+
+-- Create Public Read Policies
+CREATE POLICY "Public Read Tracks" ON public.tracks FOR SELECT USING (true);
+CREATE POLICY "Public Read Events" ON public.events FOR SELECT USING (true);
+CREATE POLICY "Public Read News" ON public.news FOR SELECT USING (true);
+                    </pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sticky Persistent Bottom Music Player -->
+    <div id="sticky-player" class="fixed bottom-0 left-0 right-0 z-50 bg-cruise-card/95 backdrop-blur-lg border-t border-cruise-border px-4 py-3 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            
+            <!-- Currently Playing Track Info -->
+            <div class="flex items-center gap-3 w-1/4 min-w-[180px]">
+                <img id="player-thumb" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=200&q=80" alt="Track Art" class="w-12 h-12 rounded-xl object-cover border border-cruise-border">
+                <div class="truncate">
+                    <h4 id="player-title" class="text-sm font-bold text-white truncate">Select a Track</h4>
+                    <p id="player-artist" class="text-xs text-gray-400 truncate">DJ Cruise</p>
+                </div>
+            </div>
+
+            <!-- Player Transport & Progress -->
+            <div class="flex flex-col items-center gap-1.5 flex-grow max-w-xl">
+                <!-- Controls -->
+                <div class="flex items-center gap-4">
+                    <button onclick="playPrevTrack()" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa-solid fa-backward-step text-sm"></i>
+                    </button>
+                    <button id="player-play-btn" onclick="togglePlay()" class="w-10 h-10 rounded-full bg-gold-500 hover:bg-gold-600 text-black flex items-center justify-center transition-all shadow-md shadow-gold-500/20">
+                        <i class="fa-solid fa-play text-sm ml-0.5"></i>
+                    </button>
+                    <button onclick="playNextTrack()" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa-solid fa-forward-step text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full flex items-center gap-3 text-xs text-gray-400 font-mono">
+                    <span id="player-current-time">00:00</span>
+                    <input type="range" id="player-progress" min="0" max="100" value="0" oninput="seekAudio(this.value)" class="w-full h-1.5 bg-cruise-bg rounded-lg appearance-none cursor-pointer accent-gold-500">
+                    <span id="player-duration">00:00</span>
+                </div>
+            </div>
+
+            <!-- Volume & Actions -->
+            <div class="hidden sm:flex items-center justify-end gap-4 w-1/4 min-w-[150px]">
+                <!-- Audio Equalizer graphic -->
+                <div class="hidden lg:flex items-end gap-1 h-5 px-2" id="equalizer-bars">
+                    <div class="w-1 bg-gold-500 rounded-full eq-bar eq-1"></div>
+                    <div class="w-1 bg-gold-500 rounded-full eq-bar eq-2"></div>
+                    <div class="w-1 bg-gold-500 rounded-full eq-bar eq-3"></div>
+                    <div class="w-1 bg-gold-500 rounded-full eq-bar eq-4"></div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-volume-high text-xs text-gray-400" id="volume-icon"></i>
+                    <input type="range" id="player-volume" min="0" max="1" step="0.05" value="0.8" oninput="setVolume(this.value)" class="w-20 h-1.5 bg-cruise-bg rounded-lg appearance-none cursor-pointer accent-gold-500">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden HTML5 Audio Element -->
+    <audio id="main-audio-player" preload="metadata"></audio>
+
+    <!-- Modal Container Backdrop -->
+    <div id="modal-overlay" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <!-- Generic Modal Box -->
+        <div id="modal-box" class="bg-cruise-card border border-cruise-border rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto space-y-6">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white p-2 rounded-xl bg-cruise-bg/50 border border-cruise-border">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modal-body">
+                <!-- Dynamically injected modal content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Search Overlay Modal -->
+    <div id="search-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex flex-col items-center pt-20 px-4">
+        <div class="max-w-2xl w-full space-y-4">
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                <input type="text" id="global-search-input" oninput="handleSearch(this.value)" placeholder="Search tracks, mixes, events, or artists..." class="w-full bg-cruise-card border border-gold-500/50 rounded-2xl pl-12 pr-12 py-4 text-white text-base focus:outline-none shadow-xl shadow-gold-500/10">
+                <button onclick="toggleSearchModal()" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <!-- Search Results Dropdown -->
+            <div id="search-results" class="bg-cruise-card border border-cruise-border rounded-2xl p-4 max-h-96 overflow-y-auto space-y-2 hidden">
+                <!-- Dynamic Results -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* State Datasets */
+        const state = {
+            activeTab: 'home',
+            currentTrackIndex: 0,
+            isPlaying: false,
+            tracks: [
+                {
+                    id: 't1',
+                    title: 'Vibe Cruise (Intro Mix)',
+                    artist: 'DJ Cruise feat. Burna Boy',
+                    genre: 'Afrobeats',
+                    duration: '03:42',
+                    cover: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80',
+                    audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
+                },
+                {
+                    id: 't2',
+                    title: 'Sunset in Ibiza',
+                    artist: 'DJ Cruise',
+                    genre: 'House',
+                    duration: '04:15',
+                    cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80',
+                    audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
+                },
+                {
+                    id: 't3',
+                    title: 'Amapiano Groove 2026',
+                    artist: 'DJ Cruise feat. Kabza',
+                    genre: 'Amapiano',
+                    duration: '05:02',
+                    cover: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80',
+                    audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
+                },
+                {
+                    id: 't4',
+                    title: 'Midnight Lagos Drive',
+                    artist: 'DJ Cruise & Wizkid',
+                    genre: 'Afrobeats',
+                    duration: '03:20',
+                    cover: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=80',
+                    audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3'
+                }
+            ],
+            mixes: [
+                {
+                    id: 'm1',
+                    title: 'Live at AfroNation Portugal 2026',
+                    duration: '1h 15m',
+                    plays: '124.5k',
+                    cover: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80',
+                    audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3'
+                },
+                {
+                    id: 'm2',
+                    title: 'Summer House Lockdown Mix',
+                    duration: '58m',
+                    plays: '89.2k',
+                    cover: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80',
+                    audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3'
+                },
+                {
+                    id: 'm3',
+                    title: 'Deep Amapiano Night Session',
+                    duration: '1h 40m',
+                    plays: '210.8k',
+                    cover: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80',
+                    audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3'
+                }
+            ],
+            artists: [
+                {
+                    id: 'a1',
+                    name: 'DJ Cruise',
+                    role: 'Headliner / Founder',
+                    bio: 'Pioneering global soundscapes blending Afrobeats, Deep House, and Amapiano.',
+                    image: 'https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=600&q=80'
+                },
+                {
+                    id: 'a2',
+                    name: 'Elena Rostova',
+                    role: 'Resident Deep House DJ',
+                    bio: 'European club scene sensation known for melodic techno and soulful house sets.',
+                    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'
+                },
+                {
+                    id: 'a3',
+                    name: 'Kofi Beats',
+                    role: 'Senior Producer',
+                    bio: 'Grammy-nominated beatmaker behind some of the largest Afrobeats anthems.',
+                    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80'
+                }
+            ],
+            events: [
+                {
+                    id: 'e1',
+                    title: 'Cruise World Tour: London Arena',
+                    venue: 'O2 Arena, London, UK',
+                    date: '2026-11-15',
+                    displayDate: 'Nov 15, 2026',
+                    time: '08:00 PM',
+                    price: 65.00,
+                    status: 'upcoming',
+                    cover: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80'
+                },
+                {
+                    id: 'e2',
+                    title: 'Miami Beach Sunset Bash',
+                    venue: 'South Beach Arena, Miami, FL',
+                    date: '2026-12-05',
+                    displayDate: 'Dec 05, 2026',
+                    time: '05:00 PM',
+                    price: 85.00,
+                    status: 'upcoming',
+                    cover: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80'
+                },
+                {
+                    id: 'e3',
+                    title: 'Lagos Island Rave',
+                    venue: 'Eko Atlantic, Lagos, NG',
+                    date: '2026-08-10',
+                    displayDate: 'Aug 10, 2026',
+                    time: '10:00 PM',
+                    price: 40.00,
+                    status: 'past',
+                    cover: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80'
+                }
+            ],
+            news: [
+                {
+                    id: 'n1',
+                    title: 'DJ Cruise Announces 2026 Global Arena Tour',
+                    category: 'Tours',
+                    date: 'Sept 12, 2026',
+                    summary: 'Covering over 25 major cities across Europe, Africa, and North America.',
+                    image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80',
+                    content: 'DJ Cruise has officially revealed dates for his massive 2026 Global Arena Tour. The tour promises state-of-the-art stage visuals, special guest appearances, and multi-genre DJ sets.'
+                },
+                {
+                    id: 'n2',
+                    title: 'New Single "Sunset in Ibiza" Hits #1 on Dance Charts',
+                    category: 'Music',
+                    date: 'Aug 28, 2026',
+                    summary: 'The track surpassed 10 million streams within its first week of release.',
+                    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80',
+                    content: 'Summer anthem "Sunset in Ibiza" has officially claimed the top spot on global dance music charts. DJ Cruise thanked fans worldwide for their continuous support.'
+                }
+            ],
+            videos: [
+                {
+                    id: 'v1',
+                    title: 'Vibe Cruise Official Music Video',
+                    views: '1.4M views',
+                    embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                    thumbnail: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80'
+                },
+                {
+                    id: 'v2',
+                    title: 'Behind The Decks: Ibiza Vlog Ep. 4',
+                    views: '450K views',
+                    embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                    thumbnail: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80'
+                }
+            ],
+            careers: [
+                {
+                    id: 'c1',
+                    title: 'Tour Sound Engineer',
+                    location: 'International / Remote',
+                    type: 'Full-Time',
+                    description: 'Looking for an experienced live sound technician for arena concert tours.'
+                },
+                {
+                    id: 'c2',
+                    title: 'Social Media & Content Manager',
+                    location: 'London, UK / Hybrid',
+                    type: 'Full-Time',
+                    description: 'Manage TikTok, Instagram, and YouTube operations for DJ Cruise brand.'
+                }
+            ]
+        };
+
+        // Audio Player DOM Elements
+        const audioEl = document.getElementById('main-audio-player');
+        const playBtn = document.getElementById('player-play-btn');
+        const titleEl = document.getElementById('player-title');
+        const artistEl = document.getElementById('player-artist');
+        const thumbEl = document.getElementById('player-thumb');
+        const progressBar = document.getElementById('player-progress');
+        const currentTimeEl = document.getElementById('player-current-time');
+        const durationEl = document.getElementById('player-duration');
+
+        // Navigation Controller
+        function switchTab(tabId) {
+            state.activeTab = tabId;
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            const target = document.getElementById(`tab-${tabId}`);
+            if (target) target.classList.remove('hidden');
+
+            // Update Desktop Nav styles
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                if (btn.dataset.tab === tabId) {
+                    btn.classList.add('text-gold-500');
+                    btn.classList.remove('text-gray-300');
+                } else {
+                    btn.classList.remove('text-gold-500');
+                    btn.classList.add('text-gray-300');
+                }
+            });
+
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Music Player Controls
+        function loadTrack(index) {
+            state.currentTrackIndex = index;
+            const track = state.tracks[index];
+            titleEl.textContent = track.title;
+            artistEl.textContent = track.artist;
+            thumbEl.src = track.cover;
+            audioEl.src = track.audio;
+        }
+
+        function playTrack(index) {
+            loadTrack(index);
+            audioEl.play().then(() => {
+                state.isPlaying = true;
+                updatePlayButton();
+            }).catch(err => console.log('Audio playback prevented:', err));
+        }
+
+        function togglePlay() {
+            if (!audioEl.src) {
+                loadTrack(0);
+            }
+            if (state.isPlaying) {
+                audioEl.pause();
+                state.isPlaying = false;
+            } else {
+                audioEl.play();
+                state.isPlaying = true;
+            }
+            updatePlayButton();
+        }
+
+        function updatePlayButton() {
+            if (state.isPlaying) {
+                playBtn.innerHTML = '<i class="fa-solid fa-pause text-sm"></i>';
+            } else {
+                playBtn.innerHTML = '<i class="fa-solid fa-play text-sm ml-0.5"></i>';
+            }
+        }
+
+        function playNextTrack() {
+            let next = state.currentTrackIndex + 1;
+            if (next >= state.tracks.length) next = 0;
+            playTrack(next);
+        }
+
+        function playPrevTrack() {
+            let prev = state.currentTrackIndex - 1;
+            if (prev < 0) prev = state.tracks.length - 1;
+            playTrack(prev);
+        }
+
+        function seekAudio(val) {
+            if (audioEl.duration) {
+                audioEl.currentTime = (val / 100) * audioEl.duration;
+            }
+        }
+
+        function setVolume(val) {
+            audioEl.volume = val;
+            const icon = document.getElementById('volume-icon');
+            if (val == 0) icon.className = 'fa-solid fa-volume-xmark text-xs text-gray-400';
+            else if (val < 0.5) icon.className = 'fa-solid fa-volume-low text-xs text-gray-400';
+            else icon.className = 'fa-solid fa-volume-high text-xs text-gray-400';
+        }
+
+        // Time Formatter
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // Audio Event Listeners
+        audioEl.addEventListener('timeupdate', () => {
+            if (audioEl.duration) {
+                const pct = (audioEl.currentTime / audioEl.duration) * 100;
+                progressBar.value = pct;
+                currentTimeEl.textContent = formatTime(audioEl.currentTime);
+                durationEl.textContent = formatTime(audioEl.duration);
+            }
+        });
+
+        audioEl.addEventListener('ended', playNextTrack);
+
+        /* UI Renderers */
+
+        // Render Home Section
+        function renderHome() {
+            // Featured Tracks
+            const featContainer = document.getElementById('home-featured-tracks');
+            featContainer.innerHTML = state.tracks.map((t, idx) => `
+                <div class="bg-cruise-card border border-cruise-border rounded-2xl p-4 hover:border-gold-500/50 transition-all group">
+                    <div class="relative rounded-xl overflow-hidden mb-3 aspect-square">
+                        <img src="${t.cover}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="${t.title}">
+                        <button onclick="playTrack(${idx})" class="absolute inset-0 m-auto w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                            <i class="fa-solid fa-play text-base ml-0.5"></i>
+                        </button>
+                    </div>
+                    <h3 class="font-bold text-white text-base truncate">${t.title}</h3>
+                    <p class="text-xs text-gray-400 truncate mt-0.5">${t.artist}</p>
+                </div>
+            `).join('');
+
+            // Highlight Event Countdown
+            const majorEvent = state.events.find(e => e.status === 'upcoming') || state.events[0];
+            const eventBanner = document.getElementById('home-event-banner');
+            eventBanner.innerHTML = `
+                <div class="space-y-2 max-w-xl">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-gold-500/10 text-gold-500 border border-gold-500/30">Next Live Performance</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white">${majorEvent.title}</h3>
+                    <p class="text-gray-300 text-sm"><i class="fa-solid fa-location-dot text-gold-500 mr-1.5"></i>${majorEvent.venue}</p>
+                    <p class="text-gray-400 text-xs"><i class="fa-solid fa-clock text-gold-500 mr-1.5"></i>${majorEvent.displayDate} at ${majorEvent.time}</p>
+                </div>
+                <div class="flex flex-col items-center sm:items-end gap-3 w-full sm:w-auto">
+                    <button onclick="openTicketModal('${majorEvent.id}')" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-black font-bold text-sm transition-all shadow-lg shadow-gold-500/20">
+                        Get Tickets ($${majorEvent.price})
+                    </button>
+                </div>
+            `;
+
+            // News Highlights
+            const newsGrid = document.getElementById('home-news-grid');
+            newsGrid.innerHTML = state.news.slice(0, 3).map(n => `
+                <div class="bg-cruise-card border border-cruise-border rounded-2xl overflow-hidden hover:border-gold-500/40 transition-all cursor-pointer" onclick="openNewsModal('${n.id}')">
+                    <img src="${n.image}" class="w-full h-40 object-cover" alt="${n.title}">
+                    <div class="p-5 space-y-2">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-gold-500">${n.category}</span>
+                        <h4 class="font-bold text-white text-base line-clamp-2">${n.title}</h4>
+                        <p class="text-xs text-gray-400 line-clamp-2">${n.summary}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Music Vault Grid
+        function renderMusic(genre = 'All') {
+            const grid = document.getElementById('music-grid');
+            const filtered = genre === 'All' ? state.tracks : state.tracks.filter(t => t.genre === genre);
+
+            grid.innerHTML = filtered.map(t => {
+                const originalIndex = state.tracks.findIndex(x => x.id === t.id);
+                return `
+                    <div class="bg-cruise-card border border-cruise-border rounded-2xl p-4 hover:border-gold-500/50 transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="relative rounded-xl overflow-hidden mb-3 aspect-square">
+                                <img src="${t.cover}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="${t.title}">
+                                <button onclick="playTrack(${originalIndex})" class="absolute inset-0 m-auto w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                                    <i class="fa-solid fa-play text-base ml-0.5"></i>
+                                </button>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-gold-500">${t.genre}</span>
+                            <h3 class="font-bold text-white text-base truncate mt-1">${t.title}</h3>
+                            <p class="text-xs text-gray-400 truncate">${t.artist}</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-4 pt-3 border-t border-cruise-border/50 text-xs text-gray-400">
+                            <span><i class="fa-regular fa-clock mr-1"></i>${t.duration}</span>
+                            <button onclick="playTrack(${originalIndex})" class="text-gold-500 hover:text-gold-400 font-semibold flex items-center gap-1">
+                                Play <i class="fa-solid fa-circle-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterMusic(genre) {
+            document.querySelectorAll('#music-genre-filters button').forEach(btn => {
+                if (btn.textContent === genre) {
+                    btn.className = 'genre-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold-500 text-black border border-gold-500 whitespace-nowrap';
+                } else {
+                    btn.className = 'genre-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border whitespace-nowrap';
+                }
+            });
+            renderMusic(genre);
+        }
+
+        // Render Mixes Grid
+        function renderMixes() {
+            const grid = document.getElementById('mixes-grid');
+            grid.innerHTML = state.mixes.map(m => `
+                <div class="bg-cruise-card border border-cruise-border rounded-2xl overflow-hidden hover:border-gold-500/40 transition-all group">
+                    <div class="relative h-48">
+                        <img src="${m.cover}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="${m.title}">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cruise-card via-transparent to-transparent"></div>
+                        <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/80 text-white font-mono text-xs"><i class="fa-solid fa-clock text-gold-500 mr-1"></i>${m.duration}</span>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <h3 class="font-bold text-white text-lg">${m.title}</h3>
+                        <div class="flex items-center justify-between text-xs text-gray-400">
+                            <span><i class="fa-solid fa-headphones mr-1 text-gold-500"></i>${m.plays} Plays</span>
+                            <button onclick="alert('Streaming mix: ${m.title}')" class="px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-600 text-black font-bold flex items-center gap-1.5 transition-all">
+                                <i class="fa-solid fa-play text-xs"></i> Stream Set
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Artists Grid
+        function renderArtists() {
+            const grid = document.getElementById('artists-grid');
+            grid.innerHTML = state.artists.map(a => `
+                <div class="bg-cruise-card border border-cruise-border rounded-2xl overflow-hidden hover:border-gold-500/40 transition-all text-center p-6 space-y-3 cursor-pointer" onclick="openArtistModal('${a.id}')">
+                    <img src="${a.image}" class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-gold-500/50 shadow-lg" alt="${a.name}">
+                    <div>
+                        <h3 class="font-bold text-white text-lg">${a.name}</h3>
+                        <p class="text-xs font-semibold text-gold-500">${a.role}</p>
+                    </div>
+                    <p class="text-xs text-gray-400 line-clamp-2">${a.bio}</p>
+                </div>
+            `).join('');
+        }
+
+        // Render Events List
+        function renderEvents(filter = 'upcoming') {
+            const container = document.getElementById('events-list');
+            const filtered = state.events.filter(e => e.status === filter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-400 py-8">No ${filter} events found.</p>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(e => `
+                <div class="bg-cruise-card border border-cruise-border rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-gold-500/40 transition-all">
+                    <div class="flex items-center gap-5">
+                        <div class="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex flex-col items-center justify-center text-gold-500 shrink-0">
+                            <span class="text-xs font-bold uppercase">${new Date(e.date).toLocaleString('default', { month: 'short' })}</span>
+                            <span class="text-2xl font-black">${new Date(e.date).getDate()}</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">${e.title}</h3>
+                            <p class="text-sm text-gray-300 mt-0.5"><i class="fa-solid fa-location-dot text-gold-500 mr-1.5"></i>${e.venue}</p>
+                            <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-clock text-gold-500 mr-1.5"></i>${e.time}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                        <button onclick="openTicketModal('${e.id}')" class="px-5 py-3 rounded-xl ${e.status === 'upcoming' ? 'bg-gold-500 hover:bg-gold-600 text-black' : 'bg-gray-700 text-gray-400 cursor-not-allowed'} font-bold text-sm transition-all" ${e.status === 'past' ? 'disabled' : ''}>
+                            ${e.status === 'upcoming' ? `Buy Tickets ($${e.price})` : 'Show Ended'}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterEvents(type) {
+            document.querySelectorAll('.event-filter-btn').forEach(btn => {
+                if (btn.textContent.toLowerCase().includes(type)) {
+                    btn.className = 'event-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold-500 text-black';
+                } else {
+                    btn.className = 'event-filter-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border';
+                }
+            });
+            renderEvents(type);
+        }
+
+        // Render Cinema / Videos
+        function renderVideos() {
+            const grid = document.getElementById('videos-grid');
+            grid.innerHTML = state.videos.map(v => `
+                <div class="bg-cruise-card border border-cruise-border rounded-2xl overflow-hidden hover:border-gold-500/40 transition-all group">
+                    <div class="relative h-48 cursor-pointer" onclick="openVideoModal('${v.title}', '${v.embedUrl}')">
+                        <img src="${v.thumbnail}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="${v.title}">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <div class="w-14 h-14 rounded-full bg-gold-500 text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-play text-xl ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 space-y-1">
+                        <h3 class="font-bold text-white text-base">${v.title}</h3>
+                        <p class="text-xs text-gray-400">${v.views}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render News
+        function renderNews() {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = state.news.map(n => `
+                <div class="bg-cruise-card border border-cruise-border rounded-2xl overflow-hidden hover:border-gold-500/40 transition-all cursor-pointer" onclick="openNewsModal('${n.id}')">
+                    <img src="${n.image}" class="w-full h-48 object-cover" alt="${n.title}">
+                    <div class="p-5 space-y-2">
+                        <div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-gold-500">
+                            <span>${n.category}</span>
+                            <span class="text-gray-400">${n.date}</span>
+                        </div>
+                        <h4 class="font-bold text-white text-lg line-clamp-2">${n.title}</h4>
+                        <p class="text-xs text-gray-400 line-clamp-3">${n.summary}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Careers
+        function renderCareers() {
+            const container = document.getElementById('careers-list');
+            container.innerHTML = state.careers.map(c => `
+                <div class="bg-cruise-card border border-cruise-border rounded-2xl p-6 space-y-3">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">${c.title}</h3>
+                            <div class="flex items-center gap-3 text-xs text-gray-400 mt-1">
+                                <span><i class="fa-solid fa-location-dot text-gold-500 mr-1"></i>${c.location}</span>
+                                <span><i class="fa-solid fa-briefcase text-gold-500 mr-1"></i>${c.type}</span>
+                            </div>
+                        </div>
+                        <button onclick="openApplyModal('${c.title}')" class="px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-600 text-black font-bold text-xs transition-all">
+                            Apply Now
+                        </button>
+                    </div>
+                    <p class="text-sm text-gray-300">${c.description}</p>
+                </div>
+            `).join('');
+        }
+
+        /* Admin Navigation Logic */
+        function switchAdminTab(tabKey) {
+            document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+                if (btn.dataset.adminTab === tabKey) {
+                    btn.className = 'admin-nav-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold-500 text-black';
+                } else {
+                    btn.className = 'admin-nav-btn px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-cruise-card text-gray-300 hover:text-white border border-cruise-border';
+                }
+            });
+
+            document.getElementById('admin-track-form').classList.toggle('hidden', tabKey !== 'add-track');
+            document.getElementById('admin-event-form').classList.toggle('hidden', tabKey !== 'add-event');
+            document.getElementById('admin-news-form').classList.toggle('hidden', tabKey !== 'add-news');
+            document.getElementById('admin-schema-view').classList.toggle('hidden', tabKey !== 'db-schema');
+        }
+
+        /* Form Submissions */
+        function handleCreateTrack(e) {
+            e.preventDefault();
+            const newTrack = {
+                id: 't' + (state.tracks.length + 1),
+                title: document.getElementById('track-title').value,
+                artist: document.getElementById('track-artist').value,
+                genre: document.getElementById('track-genre').value,
+                duration: document.getElementById('track-duration').value,
+                cover: document.getElementById('track-cover').value,
+                audio: document.getElementById('track-audio').value
+            };
+            state.tracks.unshift(newTrack);
+            renderHome();
+            renderMusic();
+            e.target.reset();
+            alert('New track added successfully!');
+        }
+
+        function handleCreateEvent(e) {
+            e.preventDefault();
+            const newEvent = {
+                id: 'e' + (state.events.length + 1),
+                title: document.getElementById('event-title').value,
+                venue: document.getElementById('event-location').value,
+                date: document.getElementById('event-date').value,
+                displayDate: document.getElementById('event-date').value,
+                time: document.getElementById('event-time').value,
+                price: parseFloat(document.getElementById('event-price').value),
+                status: 'upcoming',
+                cover: document.getElementById('event-cover').value
+            };
+            state.events.unshift(newEvent);
+            renderHome();
+            renderEvents();
+            e.target.reset();
+            alert('New tour event scheduled successfully!');
+        }
+
+        function handleCreateNews(e) {
+            e.preventDefault();
+            const newNews = {
+                id: 'n' + (state.news.length + 1),
+                title: document.getElementById('news-title').value,
+                category: document.getElementById('news-category').value,
+                date: 'Just Now',
+                summary: document.getElementById('news-content').value.substring(0, 100) + '...',
+                image: document.getElementById('news-image').value,
+                content: document.getElementById('news-content').value
+            };
+            state.news.unshift(newNews);
+            renderHome();
+            renderNews();
+            e.target.reset();
+            alert('News article published!');
+        }
+
+        function copySqlSchema() {
+            const code = document.getElementById('sql-schema-code').innerText;
+            document.execCommand('copy');
+            alert('Supabase SQL Schema copied to clipboard!');
+        }
+
+        /* Modal Controllers */
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.add('hidden');
+        }
+
+        function openModalHtml(htmlContent) {
+            const overlay = document.getElementById('modal-overlay');
+            const body = document.getElementById('modal-body');
+            body.innerHTML = htmlContent;
+            overlay.classList.remove('hidden');
+        }
+
+        function openTicketModal(eventId) {
+            const event = state.events.find(e => e.id === eventId);
+            if (!event) return;
+
+            openModalHtml(`
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-extrabold text-white">Book Tickets: ${event.title}</h2>
+                    <div class="bg-cruise-bg border border-cruise-border rounded-xl p-4 text-sm space-y-2">
+                        <p class="text-gray-300"><strong class="text-white">Venue:</strong> ${event.venue}</p>
+                        <p class="text-gray-300"><strong class="text-white">Date & Time:</strong> ${event.displayDate} at ${event.time}</p>
+                        <p class="text-gold-500 font-bold text-lg">Price: $${event.price} / ticket</p>
+                    </div>
+                    <form onsubmit="event.preventDefault(); alert('Ticket reservation confirmed! Check your email.'); closeModal();" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Full Name</label>
+                            <input type="text" required class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Email Address</label>
+                            <input type="email" required class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-black font-bold text-sm transition-all shadow-lg shadow-gold-500/20">
+                            Confirm Order
+                        </button>
+                    </form>
+                </div>
+            `);
+        }
+
+        function openNewsModal(newsId) {
+            const article = state.news.find(n => n.id === newsId);
+            if (!article) return;
+
+            openModalHtml(`
+                <div class="space-y-4">
+                    <img src="${article.image}" class="w-full h-56 object-cover rounded-2xl" alt="${article.title}">
+                    <span class="text-xs font-bold uppercase text-gold-500">${article.category} • ${article.date}</span>
+                    <h2 class="text-2xl font-extrabold text-white">${article.title}</h2>
+                    <p class="text-gray-300 text-sm leading-relaxed">${article.content}</p>
+                </div>
+            `);
+        }
+
+        function openArtistModal(artistId) {
+            const artist = state.artists.find(a => a.id === artistId);
+            if (!artist) return;
+
+            openModalHtml(`
+                <div class="space-y-4 text-center">
+                    <img src="${artist.image}" class="w-28 h-28 rounded-full mx-auto object-cover border-2 border-gold-500" alt="${artist.name}">
+                    <h2 class="text-2xl font-extrabold text-white">${artist.name}</h2>
+                    <p class="text-xs font-semibold text-gold-500 uppercase tracking-widest">${artist.role}</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">${artist.bio}</p>
+                </div>
+            `);
+        }
+
+        function openVideoModal(title, url) {
+            openModalHtml(`
+                <div class="space-y-4">
+                    <h2 class="text-xl font-bold text-white">${title}</h2>
+                    <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black">
+                        <iframe class="w-full h-full" src="${url}" title="${title}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            `);
+        }
+
+        function openApplyModal(jobTitle) {
+            openModalHtml(`
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-extrabold text-white">Apply for: ${jobTitle}</h2>
+                    <form onsubmit="event.preventDefault(); alert('Application submitted successfully!'); closeModal();" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Full Name</label>
+                            <input type="text" required class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Email</label>
+                            <input type="email" required class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Portfolio / Resume Link</label>
+                            <input type="url" required placeholder="https://linkedin.com/in/..." class="w-full bg-cruise-bg border border-cruise-border rounded-xl px-4 py-2.5 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-black font-bold text-sm transition-all">
+                            Submit Application
+                        </button>
+                    </form>
+                </div>
+            `);
+        }
+
+        // Global Search Controller
+        function toggleSearchModal() {
+            const modal = document.getElementById('search-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                document.getElementById('global-search-input').focus();
+            }
+        }
+
+        function handleSearch(query) {
+            const resultsBox = document.getElementById('search-results');
+            if (!query.trim()) {
+                resultsBox.classList.add('hidden');
+                return;
+            }
+
+            const q = query.toLowerCase();
+            const matchedTracks = state.tracks.filter(t => t.title.toLowerCase().includes(q) || t.artist.toLowerCase().includes(q));
+            const matchedEvents = state.events.filter(e => e.title.toLowerCase().includes(q) || e.venue.toLowerCase().includes(q));
+
+            if (matchedTracks.length === 0 && matchedEvents.length === 0) {
+                resultsBox.innerHTML = `<p class="text-xs text-gray-400 p-2">No matching results found.</p>`;
+            } else {
+                let html = '';
+                if (matchedTracks.length > 0) {
+                    html += `<div class="text-[10px] font-bold uppercase text-gold-500 mb-1">Tracks</div>`;
+                    html += matchedTracks.map(t => `
+                        <div onclick="playTrack(${state.tracks.findIndex(x => x.id === t.id)}); toggleSearchModal();" class="p-2 hover:bg-cruise-bg rounded-lg cursor-pointer flex items-center justify-between text-sm text-white">
+                            <span>${t.title} - <span class="text-xs text-gray-400">${t.artist}</span></span>
+                            <i class="fa-solid fa-play text-xs text-gold-500"></i>
+                        </div>
+                    `).join('');
+                }
+                if (matchedEvents.length > 0) {
+                    html += `<div class="text-[10px] font-bold uppercase text-gold-500 mt-3 mb-1">Events</div>`;
+                    html += matchedEvents.map(e => `
+                        <div onclick="switchTab('events'); toggleSearchModal();" class="p-2 hover:bg-cruise-bg rounded-lg cursor-pointer flex items-center justify-between text-sm text-white">
+                            <span>${e.title}</span>
+                            <i class="fa-solid fa-ticket text-xs text-gold-500"></i>
+                        </div>
+                    `).join('');
+                }
+                resultsBox.innerHTML = html;
+            }
+            resultsBox.classList.remove('hidden');
+        }
+
+        /* Window Initialization */
+        window.onload = function() {
+            renderHome();
+            renderMusic();
+            renderMixes();
+            renderArtists();
+            renderEvents();
+            renderVideos();
+            renderNews();
+            renderCareers();
+            loadTrack(0);
+        };
+    </script>
+</body>
+</html>
+```
